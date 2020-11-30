@@ -41,7 +41,7 @@ def run_simulation(
     # and our list of rewards by episode
     num_states, num_actions = env.num_states, env.num_actions
     Q = np.zeros((num_states, num_actions)) + Q_initial
-    if method == 'Doubly-Q-learning':
+    if method == 'Double-Q-learning':
         Q2 = np.zeros((num_states, num_actions)) + Q_initial #second Q table for double Q learning
     observed_T_counts = np.zeros((num_states, num_actions, num_states))
     observed_R_values = np.zeros((num_states, num_actions, num_states))
@@ -96,7 +96,7 @@ def run_simulation(
                 next_state_val = Q[s2].max() # Treat the next state value as the best possible
                 Q[s1,a] += step_size * (r + discount * next_state_val - Q[s1,a])# Update Q
             
-            elif method == 'Doubly-Q-learning':
+            elif method == 'Double-Q-learning':
                 if np.random.random() < 0.5: 
                     #use Q2 to update Q1
                     next_state_val = Q2[s2].max()
