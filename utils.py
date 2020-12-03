@@ -34,15 +34,14 @@ def run_simulation(
         MAX_STEPS_PER_EPISODE = 100
     ):
     # Ensure valid parameters
-    if method not in ('SARSA', 'Expected-SARSA', 'Q-learning', 'Double-Q-learning', ):
-        raise ValueError("method not in {SARSA, Expected-SARSA, Q-learning, Double-Q-learning}")
+    if method not in ('SARSA', 'Expected-SARSA', 'Q-learning' ):
+        raise ValueError("method not in {SARSA, Expected-SARSA, Q-learning}")
 
     # Initialize arrays for our estimate of Q and observations about T and R,
     # and our list of rewards by episode
     num_states, num_actions = env.num_states, env.num_actions
     Q = np.zeros((num_states, num_actions)) + Q_initial
-    if method == 'Double-Q-learning':
-        Q2 = np.zeros((num_states, num_actions)) + Q_initial #second Q table for double Q learning
+    
     observed_T_counts = np.zeros((num_states, num_actions, num_states))
     observed_R_values = np.zeros((num_states, num_actions, num_states))
     episode_rewards = []
@@ -96,16 +95,7 @@ def run_simulation(
                 next_state_val = Q[s2].max() # Treat the next state value as the best possible
                 Q[s1,a] += step_size * (r + discount * next_state_val - Q[s1,a])# Update Q
             
-            elif method == 'Double-Q-learning':
-                if np.random.random() < 0.5: 
-                    #use Q2 to update Q1
-                    next_state_val = Q2[s2].max()
-                    Q[s1,a] += step_size * (r + discount * next_state_val - Q[s1,a])
-                else:
-                    #use Q1 to update Q2
-                    next_state_val = Q[s2].max()
-                    Q2[s1,a] += step_size * (r + discount * next_state_val - Q2[s1,a])
-                
+            
             s1 = s2
             global_iter += 1
 
@@ -116,8 +106,12 @@ def run_simulation(
             'episode_rewards': np.array(episode_rewards) }
 
 def plot_policy(env, Q):
-    # credit: code inspired by Harvard's AC209b materials
+    '''
+    Function to plot the policy (action to take) at each state (i.e. each cell location in the specified grid)
+    
+    credit: inspired by Harvard's CS109b materials
 
+    '''
     row_count, col_count = env.maze_dimensions
     maze_dims = (row_count, col_count)
     value_function = np.reshape(np.max(Q, 1), maze_dims)
