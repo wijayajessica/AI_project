@@ -4,7 +4,7 @@ Harvard CS182 Final Project
 
 Overview:
 
-The goal of this project is to explore different TD-learning, including SARSA, Q-learning, Expected-SARSA and do some analysis and discussions on how to compare and contrast these 3 methods. We then ran a simulation on simple mazes and compare the performances to identify the strength and weaknesses of these different methods.
+The goal of this project is to explore different TD-learning, including SARSA, Q-learning, Expected-SARSA and do some analysis and discussions on how to compare and contrast these three methods. We then ran a simulation on simple mazes and compare the performances to identify the strength and weaknesses of these different methods.
 
 File Description:
 
