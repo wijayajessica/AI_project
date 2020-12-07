@@ -10,4 +10,4 @@ File Description:
 
 - The file `gridworld.py` have all the helper functions to build the environment.
 - The file `utils.py` have all the functions to run the simulations (including the methods to run the algorithm for SARSA, Q-learning, Expetected-SARSA, plotting functions, etc.)
-- The notebook `Evaluate_Algorithm.ipynb` shows a demo of how to build the environment using our codes, visualize the environment, and run the algorithm for SARSA, Q-learning, Expetected-SARSA on it.
+- The notebook `Evaluate Algorithm.ipynb` shows a demo of how to build the environment using our codes, visualize the environment, and run the algorithm for SARSA, Q-learning, Expetected-SARSA on it.
