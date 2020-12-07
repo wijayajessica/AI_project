@@ -33,6 +33,14 @@ def run_simulation(
         Q_initial=0.0,
         MAX_STEPS_PER_EPISODE = 100
     ):
+    """
+    Run simulation for the chosen algorithm (SARSA, Expected-SARSA, or Q-learning) using the provided hyperparameters.
+    The default is using discount rate of 0.95, epsilon of 0.1, step-size of 0.5, and Q initial of 0. 
+    By default, we set the simulation to let each trial run for at least 5000 iterations of experience and at least 100 episodes 
+    (that is, the number of iterations will be max(5000, iterations it takes to run 100 episodes)). 
+    All of this settings can be tweaked accordingly by specifying the min_num_episodes and min_num_iters.
+    
+    """
     # Ensure valid parameters
     if method not in ('SARSA', 'Expected-SARSA', 'Q-learning' ):
         raise ValueError("method not in {SARSA, Expected-SARSA, Q-learning}")
